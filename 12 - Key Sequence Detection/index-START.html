@@ -7,6 +7,18 @@
 </head>
 <body>
 <script>
+const array = [];
+const secretCode = 'yooo'
+
+
+document.addEventListener('keyup', (e) => {
+  array.push(e.key);
+  array.splice(-secretCode.length -1, array.length - secretCode.length);
+  console.log(array);
+  if (array.join('').includes(secretCode)) {
+    cornify_add();
+  }
+})
 </script>
 </body>
 </html>
