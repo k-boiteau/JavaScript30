@@ -43,6 +43,7 @@
   </div>
 
   <script>
+  /* lien blog source : https://davidwalsh.name/javascript-debounce-function */
     function debounce(func, wait = 20, immediate = true) {
       var timeout;
       return function() {
@@ -57,6 +58,25 @@
         if (callNow) func.apply(context, args);
       };
     }
+
+    const images = document.querySelectorAll('img');
+
+    function addActive(e) {
+      images.forEach( image => {
+        const slideInAt = window.scrollY + window.innerHeight;
+        const imagePosition = image.offsetTop + image.height / 2;
+        const imageBottom = image.offsetTop + image.height;
+        const imageAppear = slideInAt >= imagePosition;
+        const imageOut = window.scrollY < imageBottom;
+        if (imageAppear && imageOut) {
+          image.classList.add('active');
+        } else {
+          image.classList.remove('active');
+        }
+      });
+    };
+
+    window.addEventListener('scroll', debounce(addActive));
 
   </script>
 
