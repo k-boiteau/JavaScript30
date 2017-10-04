@@ -214,6 +214,36 @@
 </style>
 
 <script>
+const lists = document.querySelectorAll('.cool > li');
+const background = document.querySelector('.dropdownBackground');
+const nav = document.querySelector('.top');
+
+
+function mouseEnter() {
+  background.classList.add('open');
+  this.classList.add('trigger-enter');
+  setTimeout( () => this.classList.contains('trigger-enter') && this.classList.add('trigger-enter-active'), 150 );
+  let height = this.children[1].offsetHeight;
+  let width = this.children[1].offsetWidth;
+  let left = this.children[1].getBoundingClientRect().left;
+  background.style.height = height + 'px';
+  background.style.width = width + 'px';
+  background.style.left = left + 'px';
+  background.style.top = nav.offsetHeight + 'px';
+}
+
+function mouseLeave() {
+  background.classList.remove('open');
+  this.classList.remove('trigger-enter');
+  this.classList.remove('trigger-enter-active');
+  console.log(this.getBoundingClientRect());
+}
+
+lists.forEach(list => list.addEventListener('mouseenter', mouseEnter));
+lists.forEach(list => list.addEventListener('mouseleave', mouseLeave));
+
+
+
 </script>
 
 </body>
